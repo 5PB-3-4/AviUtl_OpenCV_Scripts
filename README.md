@@ -14,6 +14,7 @@
 |exedit|0.92|
 |patch.aul|r43_ss_47|
 |LuaJIT|2.1.17|
+|OpenCV|4.8.0|
 |lunasvg|2.3.9|
 
 <br>
