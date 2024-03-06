@@ -1,0 +1,763 @@
+--[[
+    cvmoduleスクリプト | 最終更新 : 2024/02/24
+    This scripts are written in Shift-JIS.
+]]
+
+-- *********************************************************************************************** --
+@メディアンブラー
+--track0:size,0,50,1,1
+
+local slider0=obj.track0
+require("cv_func")
+local isLoad, err = pcall(md_flt,slider0)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@ボックスブラー
+--track0:kx,1,300,1,1
+--track1:ky,1,300,1,1
+--track2:境界,0,4,3,1
+--check0:正規化,0
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local switch0=obj.check0
+require("cv_func")
+local isLoad, err = pcall(bx_flt,slider0,slider1,slider2,switch0)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+switch0=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@ガウシアンブラー
+--track0:kx,0,300,1,1
+--track1:ky,0,300,1,1
+--track2:σx,0,300,0,0.01
+--track3:σy,0,300,0,0.01
+--dialog:境界,_1=3;
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+
+local border = math.abs(math.floor(_1)) or 3
+_1=nil
+
+require("cv_func")
+local isLoad, err = pcall(gs_flt,slider0,slider1,slider2,slider3,border)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+border=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@バイラテラルフィルター
+--track0:d,-1,30,1,1
+--track1:色Σ,0,1000,1,0.01
+--track2:領域Σ,0,60,1,0.01
+--track3:境界,0,4,3,1
+--check0:透明度反映,0
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+local switch0=obj.check0
+
+require("cv_func")
+local isLoad, err = pcall(bl_flt,slider0,slider1,slider2,slider3,switch0)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+switch0=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@リサイズ
+--track0:拡大率,0,10000,100,0.01
+--track1:X,0,10000,100,0.01
+--track2:Y,0,10000,100,0.01
+--track3:手法,0,6,1,1
+--check0:サイズ指定,0
+--dialog:幅,_1=200;高さ,_2=100;getpixel読込/chk,_3=0;
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+local switch0=obj.check0
+
+local rw=_1 or 100
+local rh=_2 or 100
+local mov = _3 ~= 0
+_1=nil
+_2=nil
+_3=nil
+
+require("cv_func")
+local isLoad, err = pcall(im_rsz,slider0,slider1,slider2,slider3,switch0,rw,rh,mov)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+switch0=nil
+rw,rh=nil,nil
+mov=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@リサンプリング
+--track0:変化率,1,100,20,1
+--track1:縮小方法,0,6,1,1
+--track2:拡大方法,0,6,1,1
+--dialog:getpixel読込/chk,_1=0;
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+
+local mov = _1 ~= 0
+_1=nil
+
+require("cv_func")
+local isLoad, err = pcall(rs_smp,slider0,slider1,slider2,mov)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+mov=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@エッジ抽出(sobel)
+--track0:size,1,4,2,1
+--track1:dx,-100,700,100,0.01
+--track2:dy,-100,700,0,0.01
+--track3:境界,0,4,3,1
+--check0:RGB抽出,0
+--dialog:scale,_1=1.0;delta,_2=0.0;黒背景削除/chk,_3=0;
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+local switch0=obj.check0
+
+local scale=_1 or 1.0
+local delta=_2 or 0
+local black=_3 ~= 0
+_1=nil
+_2=nil
+_3=nil
+
+require("cv_func")
+local isLoad, err = pcall(sb_flt,slider0,slider1,slider2,slider3,switch0,scale,delta,black)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+switch0=nil
+scale=nil
+delta=nil
+black=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@エッジ抽出(laplacian)
+--track0:size,1,4,2,1
+--track1:scale,0,399.99,100,0.01
+--track2:delta,0,1000,0,0.01
+--track3:境界,0,4,3,1
+--check0:RGB抽出,0
+--dialog:黒背景削除/chk,_1=0;
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+local switch0=obj.check0
+local black=_1 ~= 0
+_1=nil
+
+require("cv_func")
+local isLoad, err = pcall(ll_flt,slider0,slider1,slider2,slider3,switch0,black)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+switch0=nil
+black=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@エッジ抽出(canny)
+--track0:size,1,4,2,1
+--track1:閾値1,0,1000,100,0.01
+--track2:閾値2,0,1000,200,0.01
+--track3:grad,0,1,0,1
+--check0:RGB抽出,0
+--dialog:黒背景削除/chk,_1=0;
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3 ~= 1
+local switch0=obj.check0
+local black=_1 ~= 0
+_1=nil
+
+require("cv_func")
+local isLoad, err = pcall(cn_flt,slider0,slider1,slider2,slider3,switch0,black)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+switch0=nil
+black=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@モルフォロジー(GRAY)
+--track0:size,1,50,2,1
+--track1:ﾓｰﾄﾞ,0,7,0,1
+--track2:ｶｰﾈﾙ,0,2,0,1
+--track3:境界,0,4,0,1
+--dialog:繰り返し回数,_1=1;透明度反映/chk,_2=0;アンカー,_3={-1,-1};
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+
+local iter = _1 or 1
+local alp = _2 ~= 0
+anc = _3
+_1=nil
+_2=nil
+_3=nil
+
+require("cv_func")
+local isLoad, err = pcall(de_mrp,slider0,slider1,slider2,slider3,iter,alp)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+iter=nil
+anc=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@モルフォロジー(RGB)
+--track0:赤size,1,50,2,1
+--track1:緑size,1,50,2,1
+--track2:青size,1,50,2,1
+--track3:ﾓｰﾄﾞ,0,7,0,1
+--dialog:カーネル,_1=0;繰り返し回数,_2=1;境界,_3=3;透明度反映/chk,_4=0;アンカー,_5={-1,-1};
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+
+local ker = _1 or 0
+local iter = _2 or 1
+local bor = _3 or 3
+local alp = _4 ~= 0
+anc = _5
+_1=nil
+_2=nil
+_3=nil
+_4=nil
+_5=nil
+
+require("cv_func")
+local isLoad, err = pcall(cl_mrp,slider0,slider1,slider2,slider3,ker,iter,bor,alp)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+iter=nil
+ker=nil
+bor=nil
+alp=nil
+anc=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@二値化(ノーマル)
+--track0:閾値,0,255,100,0.01
+--track1:最大値,0,255,255,0.01
+--track2:手法,0,6,0,1
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+
+require("cv_func")
+local isLoad, err = pcall(th_flt,slider0,slider1,slider2)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@二値化(適応的)
+--track0:最大値,0,255,255,1
+--track1:size,1,50,1,1
+--track2:手法,0,1,0,1
+--track3:C,-100,100,5,0.01
+--dialog:反転/chk,_1=0;
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+local inv=_1
+_1=nil
+
+require("cv_func")
+local isLoad, err = pcall(th_adp,slider0,slider1,slider2,slider3,inv)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+inv=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@拡散フィルター
+--track0:factor,0,100,50,0.01
+--track1:offset,0,50,1,0.01
+--track2:ガンマ,0.01,100,13,0.01
+--track3:繰返,1,10,3,1
+--dialog:Σ,_1=2;
+
+local slider0=obj.track0 /10
+local slider1=obj.track1 /10
+local slider2=obj.track2 /10
+local slider3=obj.track3
+
+local sigma = _1 or 2;
+_1=nil
+
+require("cv_func")
+local isLoad, err = pcall(df_flt,slider0,slider1,slider2,slider3,sigma)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+sigma=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@ノイズフィルター
+--track0:α,0.01,100,50,0.01
+--track1:K,0.01,100,100,0.01
+--track2:繰返,1,10,1,1
+
+local slider0=obj.track0 /100
+local slider1=obj.track1 /100
+local slider2=obj.track2
+
+require("cv_func")
+local isLoad, err = pcall(nz_flt,slider0,slider1,slider2)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@画像ブラー
+--track0:ぼかし,1,1000,30,1
+--track1:光の強さ,0,10,1,0.01
+--file:ぼかし画像
+
+-- パスの設定
+tonumber(nil)
+if (file == nil or file == "") then
+    print("please select file path for reading models")
+    return
+end
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+
+require("cv_func")
+local isLoad, err = pcall(fg_blr,slider0,slider1,file)
+if not isLoad then
+    print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+file=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@メビウス変換
+--track0:a,-600,600,25,0.01
+--track1:b,-600,600,-25,0.01
+--track2:c,-600,600,25,0.01
+--track3:d,-600,600,-10,0.01
+--check0:画像中心,0
+--dialog:a,_1=0;b,_2=0;c,_3=0;d,_4=0;ts1,_5=1;ts1,_6=1;
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+local switch0=obj.check0
+
+local mb_a=_1 or 0
+local mb_b=_2 or 0
+local mb_c=_3 or 0
+local mb_d=_4 or 0
+local nw = _5 or 1
+local nh = _6 or 1
+_1=nil
+_2=nil
+_3=nil
+_4=nil
+_5=nil
+_6=nil
+
+require("cv_func")
+local isLoad, err = pcall(mb_trf,slider0,slider1,slider2,slider3,switch0,mb_a,mb_b,mb_c,mb_d,nw,nh)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+switch0=nil
+mb_a=nil
+mb_b=nil
+mb_c=nil
+mb_d=nil
+nw=nil
+nh=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@meanshiftフィルター
+--track0:空間,0.01,20,10,0.01
+--track1:色,0.01,100,30,0.01
+--track2:レベル,1,10,1,1
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+
+require("cv_func")
+local isLoad, err = pcall(ms_flt,slider0,slider1,slider2)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@ボロノイ図変換
+--track0:分割点,0,500,10,0.01
+--track1:seed,1,1000,3,1
+--track2:描画法,0,2,2,1
+--dialog:線を表示する/chk,_1=0;線の色/col,_2=0xffffff;線の太さ,_3=1;
+
+local slider0=math.floor(obj.track0 * 100)
+local slider1=obj.track1
+local slider2=obj.track2
+
+local draw = _1 ~= 0
+local r,g,b = RGB(_2)
+local thick = _3 or 1
+_1=nil
+_2=nil
+_3=nil
+
+require("cv_func")
+local isLoad, err = pcall(vn_flt,slider0,slider1,slider2,draw,r,g,b,thick)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+draw=nil
+r,g,b=nil,nil,nil
+thick=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@ドロネー図変換
+--track0:分割点,0,500,10,0.01
+--track1:seed,1,1000,3,1
+--track2:描画法,0,2,2,1
+--dialog:線を表示する/chk,_1=0;線の色/col,_2=0xffffff;線の太さ,_3=1;
+
+local slider0=math.floor(obj.track0 * 100)
+local slider1=obj.track1
+local slider2=obj.track2
+
+local draw = _1 ~= 0
+local r,g,b = RGB(_2)
+local thick = _3 or 1
+_1=nil
+_2=nil
+_3=nil
+
+require("cv_func")
+local isLoad, err = pcall(bn_flt,slider0,slider1,slider2,draw,r,g,b,thick)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+draw=nil
+r,g,b=nil,nil,nil
+thick=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@ペンシルスケッチ
+--track0:Σs,0,2000,600,0.01
+--track1:Σr,0,100,7,0.01
+--track2:shade,0,100,20,0.01
+--check0:カラー,0
+
+local slider0=obj.track0 / 10
+local slider1=obj.track1 / 100
+local slider2=obj.track2 / 1000
+local switch0=obj.check0
+
+require("cv_func")
+local isLoad, err = pcall(pc_skc,slider0,slider1,slider2,switch0)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+switch0=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@stylize
+--track0:Σs,0,2000,600,0.01
+--track1:Σr,0,100,45,0.01
+
+local slider0=obj.track0 / 10
+local slider1=obj.track1 / 100
+
+require("cv_func")
+local isLoad, err = pcall(st_flt,slider0,slider1)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@鮮明化フィルター
+--track0:Σs,0,2000,600,0.01
+--track1:Σr,0,100,45,0.01
+
+local slider0=obj.track0 / 10
+local slider1=obj.track1 / 100
+
+require("cv_func")
+local isLoad, err = pcall(dt_ehc,slider0,slider1)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@エッジ保存フィルター
+--track0:Σs,0,2000,600,0.01
+--track1:Σr,0,100,40,0.01
+--track2:mode,0,1,0,1
+
+local slider0=obj.track0 / 10
+local slider1=obj.track1 / 100
+local slider2=obj.track2
+
+require("cv_func")
+local isLoad, err = pcall(ed_prs,slider0,slider1,slider2)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@油絵風
+--track0:size,0,100,10,1
+--track1:ratio,0,100,10,0.01
+
+local slider0=obj.track0
+local slider1=obj.track1 / 10
+
+require("cv_func")
+local isLoad, err = pcall(op_flt,slider0,slider1)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@ヒストグラム平坦化
+--track0:limit,0,100,40,0.01
+--track1:横,1,20,8,1
+--track2:高さ,1,20,8,1
+--track3:手法,0,1,0,1
+--check0:カラー,0
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3 ~= 0
+local switch0=obj.check0
+
+require("cv_func")
+local isLoad, err = pcall(eq_hst,slider0,slider1,slider2,slider3,switch0)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+switch0=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@カラーマップ
+--track0:map,0,21,1,1
+--track1:Hue,0,1,0,1
+--track2:inv,0,1,0,1
+
+local slider0=obj.track0
+local slider1=obj.track1 ~= 0
+local slider2=obj.track2 ~= 0
+
+require("cv_func")
+local isLoad, err = pcall(cl_map,slider0,slider1,slider2)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+collectgarbage("collect")
+
+-- *********************************************************************************************** --
+@チャンネル入替
+--track0:赤,0,3,0,1
+--track1:青,0,3,1,1
+--track2:緑,0,3,2,1
+--track3:透明度,0,3,3,1
+
+local slider0=obj.track0
+local slider1=obj.track1
+local slider2=obj.track2
+local slider3=obj.track3
+
+require("cv_func")
+local isLoad, err = pcall(ch_rpl,slider0,slider1,slider2,slider3)
+if not isLoad then
+    debug_print(err)
+end
+
+slider0=nil
+slider1=nil
+slider2=nil
+slider3=nil
+collectgarbage("collect")
