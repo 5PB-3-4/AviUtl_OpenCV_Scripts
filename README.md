@@ -8,10 +8,13 @@
     - [Visual C++ 再頒布可能パッケージ【Microsoft Visual C++ 2015-2022 Redistributable(x86)](https://learn.microsoft.com/ja-jp/cpp/windows/latest-supported-vc-redist?view=msvc-170#visual-studio-2015-2017-2019-and-2022)
 
 ### テスト環境
-- Aviutl 1.10
-- exedit 0.92
-- patch.aul r43_ss_47
-- LuaJIT 2.1.17
+|name|version|
+|----|-------|
+|Aviutl|1.10|
+|exedit|0.92|
+|patch.aul|r43_ss_47|
+|LuaJIT|2.1.17|
+|lunasvg|2.3.9|
 
 <br>
 
