@@ -2,7 +2,7 @@
 
 ## ▼導入
 - こちらはてつ(XIAO) さんが作成したAviutl用[OpenCVアニメーションスクリプト](https://www.youtube.com/watch?v=dnLQuBWPwr8)を再現したプロジェクトです。
-- `cvmods.dll.dll`をaviutl.exeのあるフォルダへ、`@cvmods.anm`,`@cv_read.obj`,`cv_func.lua`をscriptフォルダ内の子フォルダに入れてください
+- `cvmods.dll.dll`,`lunasvg.dll`をaviutl.exeのあるフォルダへ、`@cvmods.anm`,`@cv_read.obj`,`cv_func.lua`をscriptフォルダ内の子フォルダに入れてください
 - 本スクリプトのご利用には以下が必要となります。
     - [lunasvg](https://github.com/sammycage/lunasvg) ライブラリ
     - [Visual C++ 再頒布可能パッケージ【Microsoft Visual C++ 2015-2022 Redistributable(x86)](https://learn.microsoft.com/ja-jp/cpp/windows/latest-supported-vc-redist?view=msvc-170#visual-studio-2015-2017-2019-and-2022)
