@@ -1,4 +1,4 @@
-# AviUtl_OpenCV_scripts
+# AviUtl_OpenCV_Scripts
 
 ## ▼導入
 - こちらはてつ(XIAO) さんが作成したAviutl用[OpenCVアニメーションスクリプト](https://www.youtube.com/watch?v=dnLQuBWPwr8)を再現したプロジェクトです。
