@@ -4,8 +4,8 @@
 こちらはてつ(XIAO) さんが作成したAviutl用[OpenCVアニメーションスクリプト](https://www.youtube.com/watch?v=dnLQuBWPwr8)を再現したプロジェクトです。 @cvmodsフォルダをscriptフォルダへそれぞれ入れてください
 
 本スクリプトのご利用には以下が必要となります。
-    - ~~[lunasvg](https://github.com/sammycage/lunasvg) ライブラリ~~ 静的リンクしているため不要です
-    - [Visual C++ 再頒布可能パッケージ【Microsoft Visual C++ 2015-2022 Redistributable(x86)](https://learn.microsoft.com/ja-jp/cpp/windows/latest-supported-vc-redist?view=msvc-170#visual-studio-2015-2017-2019-and-2022)
+- ~~[lunasvg](https://github.com/sammycage/lunasvg) ライブラリ~~ 静的リンクしているため不要です
+- [Visual C++ 再頒布可能パッケージ【Microsoft Visual C++ 2015-2022 Redistributable(x86)](https://learn.microsoft.com/ja-jp/cpp/windows/latest-supported-vc-redist?view=msvc-170#visual-studio-2015-2017-2019-and-2022)
 
 ### テスト環境
 |name|version|
