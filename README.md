@@ -1,7 +1,9 @@
 # AviUtl_OpenCV_Scripts
 
 ## ▼導入
-こちらはてつ(XIAO) さんが作成したAviutl用[OpenCVアニメーションスクリプト](https://www.youtube.com/watch?v=dnLQuBWPwr8)を再現したプロジェクトです。 @cvmodsフォルダをscriptフォルダへそれぞれ入れてください
+こちらはてつ(XIAO) さんが作成したAviutl用[OpenCVアニメーションスクリプト](https://www.youtube.com/watch?v=dnLQuBWPwr8)を再現したプロジェクトです。 
+
+[release](https://github.com/5PB-3-4/AviUtl_OpenCV_Scripts/releases)の方からダウンロードしてください。@cvmodsフォルダをscriptフォルダへそれぞれ入れてください
 
 本スクリプトのご利用には以下が必要となります。
 - ~~[lunasvg](https://github.com/sammycage/lunasvg) ライブラリ~~ 静的リンクしているため不要です
