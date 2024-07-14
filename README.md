@@ -1,4 +1,4 @@
-~~# AviUtl_OpenCV_Scripts~~ 更新中です。しばらくお待ちください。
+# AviUtl_OpenCV_Scripts
 
 ## ▼導入
 こちらはてつ(XIAO) さんが作成したAviutl用[OpenCVアニメーションスクリプト](https://www.youtube.com/watch?v=dnLQuBWPwr8)を再現したプロジェクトです。 @cvmodsフォルダをscriptフォルダへそれぞれ入れてください
@@ -20,6 +20,9 @@
 <br>
 
 ## ▼お知らせ
+### 2024/03/08
+正式版をリリースしました。
+
 ### 2024/03/08
 v0.2よりlunasvgライブラリを静的リンクするようにしたため、`lunasvg.dll`が不要になりました。
 
